@@ -1,16 +1,16 @@
 /**
-Title of Project
+Drawing Experiments
 John Mendoza
 
-This is a template. You must fill in the title,
-author, and this description to match your project!
+Experimenting with p5 functions
+Currently drawing a non-smiley face in a grey space
 */
 
 "use strict";
 
 
 /**
-Description of preload
+Draws a face on canvas
 */
 function preload() {
 
@@ -22,15 +22,21 @@ Description of setup
 */
 function setup() {
   createCanvas(500,500);
+
+  //Set background to grey
   background(200,200,200);
-  noStroke()
-  rectMode(CORNER);
-  fill(127,100,80,100);
-  rect(250,250,100,100,5);
-  fill(127,100,60,50);
-  rect(250,250,50,50,3);
-  fill(127,100,25,50);
-  rect(250,250,25,25,3);
+
+  //Draw a yellow head
+  fill(255,241,92);
+  ellipse(250,250,200,200);
+  fill(0);
+
+  //Draw eyes
+  ellipse(200,250,20,20);
+  ellipse(300,250,20,20);
+  strokeWeight(10);
+  line(200,300,300,300);
+
 
 
 
@@ -38,7 +44,7 @@ function setup() {
 
 
 /**
-Description of draw()
+Nothing...yet()
 */
 function draw() {
 
