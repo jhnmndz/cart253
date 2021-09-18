@@ -8,11 +8,12 @@ author, and this description to match your project!
 
 "use strict";
 let bgShade=0
-let circleX=0;
-let circleY=250;
-let circleSize=200;
-let circleSpeed=1;
-let circleAcceleration=0.25;
+let circle={
+  x:0,
+  y:250,
+  size:300,
+  speed:2
+};
 
 /**
 Description of setup
@@ -27,7 +28,8 @@ Description of draw()
 */
 function draw() {
   background(bgShade);
-  circleX+=circleSpeed;
-  circleSpeed+=circleAcceleration;
-  ellipse(circleX,circleY,circleSize);
+  circle.x+=circle.speed
+  ellipse(circle.x,circle.y,circle.size);
+
+  console.log(`circle ${circle}`)+circle
 }
