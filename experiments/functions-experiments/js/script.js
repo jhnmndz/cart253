@@ -3,21 +3,23 @@ E4: Functions using text
 John Mendoza
 
 Displays text
-String of text using "double quotation marks" or 'single quotes' or `back ticks`
-
-Options!
-let string1 = "She said, \"I do not agree!\"";
-let string2 = 'She said, "I don\'t agree!"';
-let string3 = `She said, "I don't agree!"`;
 */
 
 "use strict";
 
-let name = "Hamlet";
-let title = "Prince";
-let country = "Denmark";
-let string = `Hi, my name is ${name}, ${title} of ${country}!`
-let string2 = "Hi, my name is " + name + ", title + " of " + country + "!";
+let hello = {
+  string: `Hello, world!`,
+  x: 0,
+  y: 0,
+  fill: (155),
+  vx: 5,
+  vy: 1,
+  point: 64,
+  //style: (BOLD),
+  outline: (50,200,20),
+  outlineSize: 6,
+
+}
 
 /**
 Draws canvas
@@ -32,6 +34,14 @@ function setup() {
 Draws text
 */
 function draw() {
-  background(0);
-
+  background(127);
+  hello.x = hello.x + hello.vx;
+  hello.y = hello.y + hello.vy;
+  fill(hello.fill);
+  textAlign(CENTER,CENTER);
+  textSize(hello.point);
+  textStyle(BOLD);
+  stroke(hello.outline);
+  strokeWeight(hello.outlineSize);
+  text(hello.string,hello.x,hello.y)
 }
