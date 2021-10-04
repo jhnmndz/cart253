@@ -24,7 +24,21 @@ Plan:
 "use strict";
 
 let circle1 = {
-  x:
+  x: undefined,
+  y: 100,
+  size: 14.3,
+  vx: 0,
+  vy: 0,
+  speed: 5,
+}
+
+let circle2 = {
+  x: undefined,
+  y: 100,
+  size: 14.3,
+  vx: 0,
+  vy: 0,
+  speed: 5,
 }
 
 /**
@@ -36,10 +50,18 @@ function preload() {
 
 
 /**
-Description of setup
+Create love canvas because 143 means 'I love you' in numerics
 */
 function setup() {
   createCanvas(341,143)
+  //Positions of circles on canvas
+  circle1.x = width/3
+  circle2.x = 2*width/3
+  //Circle randomized movement
+  circle1.vx = random(-circle1.speed,circle1.speed);
+  circle2.vx = random(-circle2.speed,circle2.speed);
+  circle1.vy = random(-circle1.speed,circle1.speed);
+  circle2.vy = random(-circle2.speed,circle2.speed);
 }
 
 
@@ -47,5 +69,37 @@ function setup() {
 Description of draw()
 */
 function draw() {
+  background(247, 54, 177);
 
+  movement();
+  offScreen();
+  overlap();
+  display();
+}
+
+function movement() {
+  //Circle movements
+  circle1.x = circle1.x + circle1.vx;
+  circle1.y = circle1.y + circle1.vy;
+  circle2.x = circle2.x + circle2.vx;
+  circle2.y = circle2.y + circle2.vy;
+}
+
+function offScreen() {
+  //Check if circle is off screen
+  if (circle1.x < 0 || circle1.x > width || circle1.y < 0 || circle1.y > height || circle2.x < 0 || circle2.x > width || circle2.y < 0 || circle2.y > height)
+    //Sad ending
+}
+
+function overlap() {
+  //Check if circle overlap
+  let d = dist(circle1.x,circle1.y,circle2.x,circle2.y);
+  if (d < circle1.size/2 + circle2.size/2)
+    //Love ending
+}
+
+function display() {
+  //Display circles
+  ellipse(circle1.x,circle1.y,circle1.size)
+  ellipse(circle2.x,circle2.y,circle2.size)
 }
