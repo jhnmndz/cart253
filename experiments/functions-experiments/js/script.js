@@ -1,24 +1,19 @@
 /**
-E4: Functions using text
+E4: Functions using states
 John Mendoza
 
-Displays text
+Using state to organize
 */
 
 "use strict";
 
-let hello = {
-  string: `Hello, world!`,
+let circle = {
   x: 0,
-  y: 0,
-  fill: (155),
-  vx: 5,
-  vy: 1,
-  point: 64,
-  //style: (BOLD),
-  outline: (50,200,20),
-  outlineSize: 6,
-
+  y: 250,
+  size: 100,
+  vx: 0,
+  vy: 0,
+  speed: 2
 }
 
 /**
@@ -26,7 +21,7 @@ Draws canvas
 */
 function setup() {
   createCanvas(500,500);
-
+  circle.vx = circle.speed;
 }
 
 
@@ -34,14 +29,11 @@ function setup() {
 Draws text
 */
 function draw() {
-  background(127);
-  hello.x = hello.x + hello.vx;
-  hello.y = hello.y + hello.vy;
-  fill(hello.fill);
-  textAlign(CENTER,CENTER);
-  textSize(hello.point);
-  textStyle(BOLD);
-  stroke(hello.outline);
-  strokeWeight(hello.outlineSize);
-  text(hello.string,hello.x,hello.y)
+  background(0);
+
+  circle.x = circle.x + circle.vx;
+  circle.y = circle.y + circle.vy;
+
+  ellipse(circle.x,circle.y,circle.size);
+
 }
