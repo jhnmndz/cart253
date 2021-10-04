@@ -21,7 +21,8 @@ function draw() {
   background(0);
 
   /**
-  Function call with parameters
+  Function call with parameters(arguments)
+  (Look up object destructuring)
   */
   parallels(100,100,5,1,100,3);
   parallels(50,50,10,2,20,6);
