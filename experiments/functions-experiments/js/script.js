@@ -1,25 +1,14 @@
 /**
-E4: Functions experiments
+E4: Functions with parameters
 John Mendoza
 
-Following the youtube playlist for functions.
-Typing function to define it, then call for it.
-Helps in the legibility of your code!
 */
 
 "use strict";
 
-let circle={
-  x: 0,
-  y: 250,
-  size: 100,
-  vx: 1,
-  vy: 0,
-
-}
 
 /**
-Defined as a function definition
+Draws a
 */
 function setup() {
   createCanvas(500,500);
@@ -27,53 +16,8 @@ function setup() {
 
 
 /**
-Draws a moving circle
+Draws a
 */
 function draw() {
   background(0);
-  move();
-  wrap();
-  display();
-}
-
-/**
-Draws a moving circle
-*/
-function wrap(){
-  if (circle.x > width) {
-    reset();
-  }
-}
-
-/**
-Displays circle
-*/
-function display(){
-  fill(255,0,0);
-  ellipse(circle.x,circle.y,circle.size);
-}
-
-/**
-Moves circle
-*/
-function move(){
-  circle.x = circle.x + circle.vx;
-  circle.y = circle.y + circle.vy;
-}
-
-/**
-Defined a function (only once!)
-*/
-function reset(){
-  circle.x = 0;
-  circle.vx = circle.vx + 2;
-  circle.vy = circle.vy - 0.25;
-  circle.size = circle.size + 5;
-}
-
-/**
-Resets to the left of canvas
-*/
-function mousePressed(){
-  reset();
 }
