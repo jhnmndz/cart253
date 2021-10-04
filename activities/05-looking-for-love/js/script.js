@@ -142,8 +142,17 @@ function move() {
 
 function offScreen() {
   //Check if circle is off screen
-  if (circle1.x < 0 || circle1.x > width || circle1.y < 0 || circle1.y > height || circle2.x < 0 || circle2.x > width || circle2.y < 0 || circle2.y > height) {
+  if (isOffScreen(circle1) || isOffScreen(circle2)) {
     state = `sad`
+  }
+}
+
+function isOffScreen(circle) {
+  if (circle.x < 0 || circle.x > width || circle.y < 0 || circle.y > height){
+    return true;
+  }
+  else {
+    return false;
   }
 }
 
