@@ -1,5 +1,5 @@
 /**
-E4: Functions with parameters
+E4: Functions with return values
 John Mendoza
 
 */
@@ -20,23 +20,8 @@ Draws lines
 function draw() {
   background(0);
 
-  /**
-  Function call with parameters(arguments)
-  (Look up object destructuring)
-  */
-  parallels(100,100,5,1,100,3);
-  parallels(50,50,10,2,20,6);
-}
+  let x = random(0,width);
+  let y = random(0,height);
 
-/**
-Defined functions and added parameters(variables)
-*/
-function parallels(x,y,numLines,lineWidth,lineHeight,lineSpacing){
-  for (let i = 0; i < numLines; i++){
-    noStroke();
-    fill(255);
-    rectMode(CENTER);
-    rect(x,y,lineWidth,lineHeight);
-    x = x + lineSpacing;
-  }
+  ellipse(x,y,100);
 }
