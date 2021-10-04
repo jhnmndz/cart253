@@ -2,10 +2,18 @@
 E4: Functions using keyboard inputs
 John Mendoza
 
-Learning how to use keyboard inputs
+Using keyboard inputs to move a circle on a canvas
 */
 
-let bg = 0;
+let circle = {
+  x: 250,
+  y: 250,
+  size: 100,
+  vx: 0,
+  vy: 0,
+  speed: 5
+
+}
 
 "use strict";
 
@@ -18,24 +26,44 @@ function setup() {
 }
 
 /**
-Draws text animation
+Draws circle reacting to keyboard inputs
 */
 function draw() {
-  background(bg);
+  background(0);
 
-  textAlign(CENTER,CENTER);
-  textSize(64);
-  fill(255);
-  text(keyCode,width/2,height/2);
+  handleInput();
+  move();
+  display();
+
 }
 
-function keyPressed(){
-  if (keyCode === UP_ARROW){
-    bg = bg + 10;
-    bg = constrain(bg,0,255);
+function handleInput() {
+  if (keyIsDown(LEFT_ARROW)) {
+    circle.vx = -circle.speed;
   }
-  else if (keyCode === DOWN_ARROW){
-    bg = bg - 10;
-    bg = constrain(bg,0,255)
+  else if (keyIsDown(RIGHT_ARROW)) {
+    circle.vx = circle.speed;
   }
+  else {
+    circle.vx = 0;
+  }
+  if (keyIsDown(UP_ARROW)){
+    circle.vy = -circle.speed;
+  }
+  else if (keyIsDown(DOWN_ARROW)) {
+    circle.vy = circle.speed;
+  }
+  else {
+    circle.vy = 0;
+  }
+}
+
+function move() {
+  circle.x = circle.x + circle.vx;
+  circle.y = circle.y + circle.vy;
+}
+
+function display() {
+  fill(255);
+  ellipse(circle.x,circle.y,circle.size)
 }
