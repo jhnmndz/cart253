@@ -2,7 +2,7 @@
 E4: Functions using automated movements
 John Mendoza
 
-Using automated movements without the need of a user
+Generated movement out of random/unpredictible behaviour
 */
 
 let circle = {
@@ -22,7 +22,6 @@ Draws canvas
 */
 function setup() {
   createCanvas(500,500);
-
 }
 
 /**
@@ -30,6 +29,22 @@ Draws circle
 */
 function draw() {
   background(0);
+
+  let dx = circle.x - mouseX;
+  let dy = circle.y - mouseY;
+
+  if (dx > 0) {
+    circle.vx = circle.speed;
+  }
+  else if (dx < 0) {
+    circle.vx = -circle.speed;
+  }
+  if (dy > 0) {
+    circle.vy = circle.speed;
+  }
+  else if (dy < 0) {
+    circle.vy = -circle.speed;
+  }
 
   circle.x = circle.x + circle.vx;
   circle.y = circle.y + circle.vy;
