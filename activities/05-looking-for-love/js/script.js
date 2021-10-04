@@ -26,7 +26,7 @@ Plan:
 let circle1 = {
   x: undefined,
   y: 100,
-  size: 14.3,
+  size: 143,
   vx: 0,
   vy: 0,
   speed: 5,
@@ -35,11 +35,13 @@ let circle1 = {
 let circle2 = {
   x: undefined,
   y: 100,
-  size: 14.3,
+  size: 143,
   vx: 0,
   vy: 0,
   speed: 5,
 }
+
+let state = `title`; //can be: title, simulation, love, sadness
 
 /**
 Description of preload
@@ -53,7 +55,11 @@ function preload() {
 Create love canvas because 143 means 'I love you' in numerics
 */
 function setup() {
-  createCanvas(341,143)
+  createCanvas(555,555);
+  circleSetup();
+}
+
+function circleSetup() {
   //Positions of circles on canvas
   circle1.x = width/3
   circle2.x = 2*width/3
@@ -64,20 +70,69 @@ function setup() {
   circle2.vy = random(-circle2.speed,circle2.speed);
 }
 
-
 /**
-Description of draw()
+Draws love circle simulations()
 */
 function draw() {
   background(247, 54, 177);
 
-  movement();
+  if (state === `title`) {
+      title();
+  }
+  else if (state === `simulation`) {
+    simulation();
+  }
+  else if (state === `love`) {
+    love();
+  }
+  else if (state === `sad`) {
+    sad();
+  }
+}
+
+function title() {
+  push();
+  textSize(30);
+  fill(255);
+  textAlign(CENTER,CENTER);
+  text(`♥?`,width/2,height/2);
+  pop();
+}
+
+function simulation() {
+  move();
   offScreen();
   overlap();
   display();
 }
 
-function movement() {
+function love() {
+  push();
+  background(255, 219, 166);
+  textSize(60);
+  fill(233, 255, 122);
+  textAlign(CENTER,CENTER);
+  text(`( ˘ ³˘)♥`,width/2,height/2);
+  textAlign(CENTER,CENTER);
+  textSize(15);
+  text(`Hey, Siri. Play "Lover's Rock" by SADE`, width/2, 200);
+  pop();
+}
+
+function sad() {
+  push();
+  background(59, 86, 99);
+  textSize(60);
+  fill(66, 173, 255);
+  textAlign(CENTER,CENTER);
+  text(`( ⚈̥̥̥̥̥́⌢⚈̥̥̥̥̥̀)`,width/2,height/2);
+  textAlign(CENTER,CENTER);
+  textSize(15);
+  text(`Hey, Siri. Play "Officially Missing You" by Tamia`, width/2, 200);
+  pop();
+}
+
+function move() {
   //Circle movements
   circle1.x = circle1.x + circle1.vx;
   circle1.y = circle1.y + circle1.vy;
@@ -87,19 +142,27 @@ function movement() {
 
 function offScreen() {
   //Check if circle is off screen
-  if (circle1.x < 0 || circle1.x > width || circle1.y < 0 || circle1.y > height || circle2.x < 0 || circle2.x > width || circle2.y < 0 || circle2.y > height)
-    //Sad ending
+  if (circle1.x < 0 || circle1.x > width || circle1.y < 0 || circle1.y > height || circle2.x < 0 || circle2.x > width || circle2.y < 0 || circle2.y > height) {
+    state = `sad`
+  }
 }
 
 function overlap() {
   //Check if circle overlap
   let d = dist(circle1.x,circle1.y,circle2.x,circle2.y);
-  if (d < circle1.size/2 + circle2.size/2)
-    //Love ending
+  if (d < circle1.size/2 + circle2.size/2){
+    state = `love`
+  }
 }
 
 function display() {
   //Display circles
   ellipse(circle1.x,circle1.y,circle1.size)
   ellipse(circle2.x,circle2.y,circle2.size)
+}
+
+function mousePressed() {
+  if (state === `title`){
+    state = `simulation`;
+  }
 }
