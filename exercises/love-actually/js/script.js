@@ -30,6 +30,7 @@ let helplessLover = {
   vx: 0,
   vy: 0,
   speed: 5,
+
 }
 
 let hardToGet = {
@@ -43,8 +44,11 @@ let hardToGet = {
   vy: 0,
   speed: 5,
   tx: 0,
-  ty: 10
+  ty: 10,
+  loveTimer: 0,
 }
+
+let timer = 0;
 
 let state = `title`;
 
@@ -61,6 +65,7 @@ Draw love circles and their movements
 */
 function draw() {
   background(hardToGet.r, hardToGet.g, hardToGet.b);
+
   if (state === `title`) {
     title();
   }
@@ -76,6 +81,13 @@ function draw() {
 }
 
 function simulation() {
+  let d = dist(helplessLover.x,helplessLover.y,hardToGet.x,hardToGet.y);
+  if (d > helplessLover.size/2 + hardToGet.size/2){
+    timer++
+    if (timer >= 900){
+      state = `sad`;
+    }
+  }
   display();
   movement();
   overlap();
@@ -138,17 +150,46 @@ function automatedMovement() {
 
 function title() {
   push();
-  textSize(30);
-  fill(255);
-  textAlign(CENTER,CENTER);
-  text(`♥?`,width/2,height/2);
+  titleText();
   pop();
 }
 
 function love() {
-  //statement
   push();
   background(255, 219, 166);
+  loveText();
+  pop();
+}
+
+function sad() {
+  push();
+  background(59, 86, 99);
+  sadText();
+  pop();
+}
+
+function overlap() {
+  let d = dist(helplessLover.x,helplessLover.y,hardToGet.x,hardToGet.y);
+  if (d < helplessLover.size/2 + hardToGet.size/2){
+    hardToGet.loveTimer++
+    if (hardToGet.loveTimer >= 30){
+      state = `love`;
+    }
+  }
+  else {
+    hardToGet.loveTimer = 0;
+  }
+
+}
+
+function titleText() {
+  textSize(30);
+  fill(255);
+  textAlign(CENTER,CENTER);
+  text(`♥?`,width/2,height/2);
+}
+
+function loveText() {
   textSize(60);
   fill(233, 255, 122);
   textAlign(CENTER,CENTER);
@@ -156,12 +197,9 @@ function love() {
   textAlign(CENTER,CENTER);
   textSize(15);
   text(`Hey, Siri. Play "Lover's Rock" by SADE`, width/2, 200);
-  pop();
 }
 
-function sad() {
-  push();
-  background(59, 86, 99);
+function sadText() {
   textSize(60);
   fill(66, 173, 255);
   textAlign(CENTER,CENTER);
@@ -169,17 +207,9 @@ function sad() {
   textAlign(CENTER,CENTER);
   textSize(15);
   text(`Hey, Siri. Play "Officially Missing You" by Tamia`, width/2, 200);
-  pop();
 }
 
-function overlap(){
-  let d = dist(helplessLover.x,helplessLover.y,hardToGet.x,hardToGet.y);
-  if (d < helplessLover.size/2 + hardToGet.size/2){
-    state = `love`
-  }
-}
-
-function mousePressed() {
+function keyPressed() {
   if (state === `title`){
     state = `simulation`;
   }
