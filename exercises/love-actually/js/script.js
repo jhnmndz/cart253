@@ -185,7 +185,7 @@ function sadTimer() {
     //   state = `sad`;
     // }
     timer++
-    if (timer >= 1600){
+    if (timer >= 1200){
       state = `sad`;
     }
   }
@@ -202,7 +202,7 @@ function titleText() {
   text(`♥?`,width/2,height/2);
   textSize(15);
   textAlign(LEFT);
-  text(`To play: use arrow keys\nGoal: find and hover over love for 2 seconds\nNote: Love is hard to find`, 30, 450);
+  text(`To play: use arrow keys\nGoal: find and hover over love for 2 seconds\nNote: Act fast! They might lose feelings...`, 30, 450);
 }
 
 function loveText() {
