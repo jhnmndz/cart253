@@ -33,9 +33,12 @@ let helplessLover = {
 }
 
 let hardToGet = {
-  x: 250,
-  y: 250,
-  size: 30,
+  x: 400,
+  y: 400,
+  size: 15,
+  r: 247,
+  g: 54,
+  b: 177,
   vx: 0,
   vy: 0,
   speed: 5,
@@ -56,13 +59,27 @@ Draw love circles and their movements
 */
 function draw() {
   background(247, 54, 177);
+
+  display();
+  movement();
+}
+
+function display() {
   //Display love circles
   ellipse(helplessLover.x,helplessLover.y,helplessLover.size);
   push();
-  fill(247, 54, 177);
+  fill(hardToGet.r, hardToGet.g, hardToGet.b);
   // noStroke();
   ellipse(hardToGet.x,hardToGet.y,hardToGet.size);
   pop();
+}
+
+function movement() {
+  controlledMovement();
+  automatedMovement();
+}
+
+function controlledMovement() {
   //Controlled movements (keyboard inputs)
   if (keyIsDown(LEFT_ARROW)){
     helplessLover.vx = -helplessLover.speed;
@@ -82,9 +99,12 @@ function draw() {
   else {
     helplessLover.vy = 0;
   }
+}
+
+function automatedMovement() {
   //hardToGet automated movements
-  hardToGet.tx = hardToGet.tx + 0.03;
-  hardToGet.ty = hardToGet.ty + 0.03;
+  hardToGet.tx = hardToGet.tx + 0.05;
+  hardToGet.ty = hardToGet.ty + 0.05;
   let noiseX = noise(hardToGet.tx);
   let noiseY = noise(hardToGet.ty);
   hardToGet.vx = map(noiseX,0,1,-hardToGet.speed,hardToGet.speed);
