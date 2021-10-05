@@ -33,8 +33,8 @@ let helplessLover = {
 }
 
 let hardToGet = {
-  x: 500,
-  y: 500,
+  x: 250,
+  y: 250,
   size: 30,
   vx: 0,
   vy: 0,
@@ -58,7 +58,7 @@ function draw() {
   ellipse(helplessLover.x,helplessLover.y,helplessLover.size);
   push();
   fill(247, 54, 177);
-  noStroke();
+  // noStroke();
   ellipse(hardToGet.x,hardToGet.y,hardToGet.size);
   pop();
   //Controlled movements (keyboard inputs)
@@ -81,24 +81,17 @@ function draw() {
     helplessLover.vy = 0;
   }
   //Automated movements
-  let dx = hardToGet.x - mouseX;
-  let dy = hardToGet.y - mouseY;
-  if (dx > 0) {
-    hardToGet.vx = hardToGet.speed;
-  }
-  else if (dx < 0) {
-    hardToGet.vx = -hardToGet.speed;
-  }
-  if (dy > 0) {
-    hardToGet.vy = hardToGet.speed;
-  }
-  else if (dy < 0) {
-    hardToGet.vy = -hardToGet.speed;
+  let change = random();
+  if (change < 0.05) {
+    hardToGet.vx = random(-hardToGet.speed,hardToGet.speed);
+    hardToGet.vy = random(-hardToGet.speed,hardToGet.speed);
   }
   //helplessLover movement
   helplessLover.x = helplessLover.x + helplessLover.vx;
   helplessLover.y = helplessLover.y + helplessLover.vy;
   //hardToGet movement
   hardToGet.x = hardToGet.x + hardToGet.vx;
+  hardToGet.x = constrain(hardToGet.x,0,width);
   hardToGet.y = hardToGet.y + hardToGet.vy;
+  hardToGet.y = constrain(hardToGet.y,0,width);
 }
