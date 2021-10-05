@@ -39,6 +39,8 @@ let hardToGet = {
   vx: 0,
   vy: 0,
   speed: 5,
+  tx: 0,
+  ty: 10
 }
 
 /**
@@ -80,12 +82,13 @@ function draw() {
   else {
     helplessLover.vy = 0;
   }
-  //Automated movements
-  let change = random();
-  if (change < 0.05) {
-    hardToGet.vx = random(-hardToGet.speed,hardToGet.speed);
-    hardToGet.vy = random(-hardToGet.speed,hardToGet.speed);
-  }
+  //hardToGet automated movements
+  hardToGet.tx = hardToGet.tx + 0.03;
+  hardToGet.ty = hardToGet.ty + 0.03;
+  let noiseX = noise(hardToGet.tx);
+  let noiseY = noise(hardToGet.ty);
+  hardToGet.vx = map(noiseX,0,1,-hardToGet.speed,hardToGet.speed);
+  hardToGet.vy = map(noiseY,0,1,-hardToGet.speed,hardToGet.speed);
   //helplessLover movement
   helplessLover.x = helplessLover.x + helplessLover.vx;
   helplessLover.y = helplessLover.y + helplessLover.vy;
