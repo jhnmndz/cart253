@@ -81,13 +81,7 @@ function draw() {
 }
 
 function simulation() {
-  let d = dist(helplessLover.x,helplessLover.y,hardToGet.x,hardToGet.y);
-  if (d > helplessLover.size/2 + hardToGet.size/2){
-    timer++
-    if (timer >= 900){
-      state = `sad`;
-    }
-  }
+  sadTimer();
   display();
   movement();
   overlap();
@@ -98,7 +92,7 @@ function display() {
   ellipse(helplessLover.x,helplessLover.y,helplessLover.size);
   push();
   fill(hardToGet.r, hardToGet.g, hardToGet.b);
-  // noStroke();
+  noStroke();
   ellipse(hardToGet.x,hardToGet.y,hardToGet.size);
   pop();
 }
@@ -161,6 +155,19 @@ function love() {
   pop();
 }
 
+function loveTimer() {
+  let d = dist(helplessLover.x,helplessLover.y,hardToGet.x,hardToGet.y);
+  if (d < helplessLover.size/2 + hardToGet.size/2){
+    hardToGet.loveTimer++
+    if (hardToGet.loveTimer >= 60){
+      state = `love`;
+    }
+  }
+  else {
+    hardToGet.loveTimer = 0;
+  }
+}
+
 function sad() {
   push();
   background(59, 86, 99);
@@ -168,18 +175,24 @@ function sad() {
   pop();
 }
 
-function overlap() {
+function sadTimer() {
   let d = dist(helplessLover.x,helplessLover.y,hardToGet.x,hardToGet.y);
-  if (d < helplessLover.size/2 + hardToGet.size/2){
-    hardToGet.loveTimer++
-    if (hardToGet.loveTimer >= 30){
-      state = `love`;
+  if (d > helplessLover.size/2 + hardToGet.size/2){
+    // if (frameCount % 60 == 5 && timer > 0) {
+    //   timer --;
+    // }
+    // if (timer == 5) {
+    //   state = `sad`;
+    // }
+    timer++
+    if (timer >= 1600){
+      state = `sad`;
     }
   }
-  else {
-    hardToGet.loveTimer = 0;
-  }
+}
 
+function overlap() {
+  loveTimer();
 }
 
 function titleText() {
@@ -187,11 +200,14 @@ function titleText() {
   fill(255);
   textAlign(CENTER,CENTER);
   text(`♥?`,width/2,height/2);
+  textSize(15);
+  textAlign(LEFT);
+  text(`To play: use arrow keys\nGoal: find and hover over love for 2 seconds\nNote: Love is hard to find`, 30, 450);
 }
 
 function loveText() {
   textSize(60);
-  fill(233, 255, 122);
+  fill(252, 177, 3);
   textAlign(CENTER,CENTER);
   text(`( ˘ ³˘)♥`,width/2,height/2);
   textAlign(CENTER,CENTER);
