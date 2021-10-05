@@ -23,10 +23,19 @@ Plan:
 "use strict";
 
 
-let circle1 = {
+let helplessLover = {
   x: 100,
   y: 100,
   size: 100,
+  vx: 0,
+  vy: 0,
+  speed: 5,
+}
+
+let hardToGet = {
+  x: 500,
+  y: 500,
+  size: 30,
   vx: 0,
   vy: 0,
   speed: 5,
@@ -41,32 +50,55 @@ function setup() {
 
 
 /**
-Draws circles()
+Draw love circles and their movements
 */
 function draw() {
   background(247, 54, 177);
-  //Display circles
-  ellipse(circle1.x,circle1.y,circle1.size)
-  //Movement Controls
+  //Display love circles
+  ellipse(helplessLover.x,helplessLover.y,helplessLover.size);
+  push();
+  fill(247, 54, 177);
+  noStroke();
+  ellipse(hardToGet.x,hardToGet.y,hardToGet.size);
+  pop();
+  //Controlled movements (keyboard inputs)
   if (keyIsDown(LEFT_ARROW)){
-    circle1.vx = -circle1.speed;
+    helplessLover.vx = -helplessLover.speed;
   }
   else if (keyIsDown(RIGHT_ARROW)) {
-    circle1.vx = circle1.speed;
+    helplessLover.vx = helplessLover.speed;
   }
   else {
-    circle1.vx = 0;
+    helplessLover.vx = 0;
   }
   if (keyIsDown(UP_ARROW)){
-    circle1.vy = -circle1.speed;
+    helplessLover.vy = -helplessLover.speed;
   }
   else if (keyIsDown(DOWN_ARROW)) {
-    circle1.vy = circle1.speed;
+    helplessLover.vy = helplessLover.speed;
   }
   else {
-    circle1.vy = 0;
+    helplessLover.vy = 0;
   }
-  //Circle movements
-  circle1.x = circle1.x + circle1.vx;
-  circle1.y = circle1.y + circle1.vy;
+  //Automated movements
+  let dx = hardToGet.x - mouseX;
+  let dy = hardToGet.y - mouseY;
+  if (dx > 0) {
+    hardToGet.vx = hardToGet.speed;
+  }
+  else if (dx < 0) {
+    hardToGet.vx = -hardToGet.speed;
+  }
+  if (dy > 0) {
+    hardToGet.vy = hardToGet.speed;
+  }
+  else if (dy < 0) {
+    hardToGet.vy = -hardToGet.speed;
+  }
+  //helplessLover movement
+  helplessLover.x = helplessLover.x + helplessLover.vx;
+  helplessLover.y = helplessLover.y + helplessLover.vy;
+  //hardToGet movement
+  hardToGet.x = hardToGet.x + hardToGet.vx;
+  hardToGet.y = hardToGet.y + hardToGet.vy;
 }
