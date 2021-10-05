@@ -18,6 +18,9 @@ Plan:
 3. Add the idea of states
   Create a state variable and check it in draw
   Connect the states
+
+Note to self: Try adding a map feature to the color of the background that indicates
+the timer or the fleeting of feelings (to resemble life's harsh reality)
 */
 
 "use strict";
@@ -222,7 +225,7 @@ function sadText() {
   text(`( ⚈̥̥̥̥̥́⌢⚈̥̥̥̥̥̀)`,width/2,height/2);
   textAlign(CENTER,CENTER);
   textSize(15);
-  text(`Hey, Siri. Play "Officially Missing You" by Tamia`, width/2, 200);
+  text(`Hey, Siri. Play "Officially Missing You" by Tamia n\refresh to restart`, width/2, 200);
 }
 
 function keyPressed() {
