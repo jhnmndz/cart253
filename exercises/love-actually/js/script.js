@@ -46,8 +46,10 @@ let hardToGet = {
   ty: 10
 }
 
+let state = `title`;
+
 /**
-Description of setup
+Draw canvas
 */
 function setup() {
   createCanvas(500,500);
@@ -58,10 +60,25 @@ function setup() {
 Draw love circles and their movements
 */
 function draw() {
-  background(247, 54, 177);
+  background(hardToGet.r, hardToGet.g, hardToGet.b);
+  if (state === `title`) {
+    title();
+  }
+  else if (state === `simulation`) {
+    simulation();
+  }
+  else if (state === `love`) {
+    love();
+  }
+  else if (state === `sad`) {
+    sad();
+  }
+}
 
+function simulation() {
   display();
   movement();
+  overlap();
 }
 
 function display() {
@@ -117,4 +134,53 @@ function automatedMovement() {
   hardToGet.x = constrain(hardToGet.x,0,width);
   hardToGet.y = hardToGet.y + hardToGet.vy;
   hardToGet.y = constrain(hardToGet.y,0,width);
+}
+
+function title() {
+  push();
+  textSize(30);
+  fill(255);
+  textAlign(CENTER,CENTER);
+  text(`♥?`,width/2,height/2);
+  pop();
+}
+
+function love() {
+  //statement
+  push();
+  background(255, 219, 166);
+  textSize(60);
+  fill(233, 255, 122);
+  textAlign(CENTER,CENTER);
+  text(`( ˘ ³˘)♥`,width/2,height/2);
+  textAlign(CENTER,CENTER);
+  textSize(15);
+  text(`Hey, Siri. Play "Lover's Rock" by SADE`, width/2, 200);
+  pop();
+}
+
+function sad() {
+  push();
+  background(59, 86, 99);
+  textSize(60);
+  fill(66, 173, 255);
+  textAlign(CENTER,CENTER);
+  text(`( ⚈̥̥̥̥̥́⌢⚈̥̥̥̥̥̀)`,width/2,height/2);
+  textAlign(CENTER,CENTER);
+  textSize(15);
+  text(`Hey, Siri. Play "Officially Missing You" by Tamia`, width/2, 200);
+  pop();
+}
+
+function overlap(){
+  let d = dist(helplessLover.x,helplessLover.y,hardToGet.x,hardToGet.y);
+  if (d < helplessLover.size/2 + hardToGet.size/2){
+    state = `love`
+  }
+}
+
+function mousePressed() {
+  if (state === `title`){
+    state = `simulation`;
+  }
 }
