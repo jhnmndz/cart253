@@ -5,12 +5,26 @@ John Mendoza
 Creating a simulation where the paddle progressively gets smaller as the randomized direction of balls.
 The goal of the game is to prevent the balls to get to the bottom of the canvas.
 Might be a Christmas-themed simulation?
+
+Plan:
+1. Set up the program
+  Create elements
+  Do basic set up of our canvas
+  Set the background in draw
+2. Work on the simulation part
+  Get the objects moving and display them
+  Check for either object moving off the screen
+  Check for the circles intersecting
+  Move the simulation stuff into functions
+3. Add the idea of states
+  Create a state variable and check it in draw
+  Connect the states
 */
 
 "use strict";
 
 
-let paddle = {
+let paddle = { //paddle only moves on x axis at the bottom of the canvas
   x: undefined,
   y: 450,
   xPaddle: 300,
@@ -22,7 +36,9 @@ let paddle = {
   b: 100,
 }
 
-let growBall = {
+let paddleImage;
+
+let growBall = { //growBall will allow the paddle to gain surface area
   x: undefined,
   y: 0,
   xGrowBall: 300,
@@ -34,7 +50,7 @@ let growBall = {
   b: 200,
 }
 
-let shrinkBall = {
+let shrinkBall = { //shrinkBall will reduce the surface area of paddle
   x: undefined,
   y: 0,
   xShrinkBall: 300,
@@ -55,11 +71,12 @@ let canvasColor = {
 }
 
 
+
 /**
-Maybe uploading Christmas-related imagery
+Maybe uploading Christmas-related imagery???
 */
 function preload() {
-
+  //paddleImage = loadImage("assets/images/");
 }
 
 
