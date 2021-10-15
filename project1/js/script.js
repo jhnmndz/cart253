@@ -2,8 +2,9 @@
 Project 1: Simulation
 John Mendoza
 
-Creating a simulation where the paddle progressively gets smaller as the randomized direction of balls.
-The goal of the game is to prevent the balls to get to the bottom of the canvas.
+Creating a simulation where the circle needs to avoid the moving paddles.
+The concept of the game is dodging responsibilities until productivity/urgency builds up.
+
 Might be a Christmas-themed simulation?
 
 Plan:
@@ -24,11 +25,11 @@ Plan:
 "use strict";
 
 
-let paddle = { //paddle only moves on x axis at the bottom of the canvas
+let ball = { //showcasing avoidance behaviour until the very last second
   x: undefined,
   y: 450,
-  xPaddle: 300,
-  yPaddle: 10,
+  xBall: 300,
+  yBall: 10,
   vx: 0,
   vy: 0,
   r: 100,
@@ -36,13 +37,11 @@ let paddle = { //paddle only moves on x axis at the bottom of the canvas
   b: 100,
 }
 
-let paddleImage;
-
-let growBall = { //growBall will allow the paddle to gain surface area
+let movingBar = { //indicated as intimidating deadline (personal and work)
   x: undefined,
   y: 0,
-  xGrowBall: 300,
-  yGrowBall: 10,
+  xMovingBar: 300,
+  yMovingBar: 10,
   vx: 0,
   vy: 0,
   r: 200,
@@ -50,11 +49,11 @@ let growBall = { //growBall will allow the paddle to gain surface area
   b: 200,
 }
 
-let shrinkBall = { //shrinkBall will reduce the surface area of paddle
+let movingBall = { //indicated as productivity bubbles
   x: undefined,
   y: 0,
-  xShrinkBall: 300,
-  yShrinkBall: 10,
+  xMovingBall: 300,
+  yMovingBall: 10,
   vx: 0,
   vy: 0,
   r: 200,
@@ -62,12 +61,12 @@ let shrinkBall = { //shrinkBall will reduce the surface area of paddle
   b: 200,
 }
 
-let canvasColor = {
-  x: 1000,
+let workspace = {
+  x: 500,
   y: 1000,
-  r: 150,
-  g: 150,
-  b: 150
+  r: 255,
+  g: 255,
+  b: 255
 }
 
 
@@ -76,39 +75,38 @@ let canvasColor = {
 Maybe uploading Christmas-related imagery???
 */
 function preload() {
-  //paddleImage = loadImage("assets/images/");
 }
 
 
 /**
-Creating the interface of the game
+Creating workspace
 */
 function setup() {
-  createCanvas(canvas.x,canvas.y);
+  createCanvas(workspace.x, workspace.y);
 }
 
 
 /**
-Displaying elements
+Displaying ball with its many responsibilities
 */
 function draw() {
-  background(canvasColor.r,canvasColor.g,canvasColor.b);
-  //display of the paddle
+  background(workspace.r, workspace.g, workspace.b);
+  //display of the ball
   push();
-  fill(paddle.r,paddle.g,paddle.b);
+  fill(ball.r, ball.g, ball.b);
   noStroke();
-  rect(paddle.x,paddle.y,paddle.xPaddle,paddle.yPaddle);
+  rect(ball.x, ball.y, ball.xBall, ball.yBall);
   pop();
-  //display of the growBall
+  //display of the movingBar
   push();
-  fill(growBall.r,growBall.g,growBall.b);
+  fill(movingBar.r, movingBar.g, movingBar.b);
   noStroke();
-  ellipse(growBall.x,growBall.y,growBall.xGrowBall,growBall.yGrowBall);
+  ellipse(movingBar.x, movingBar.y, movingBar.xMovingBar, movingBar.yMovingBar);
   pop();
-  //display of the shrinkBall
+  //display of the movingBall
   push();
-  fill(shrinkBall.r,shrinkBall.g,shrinkBall.b);
+  fill(movingBall.r, movingBall.g, movingBall.b);
   noStroke();
-  ellipse(shrinkBall.x,shrinkBall.y,shrinkBall.xShrinkBall,shrinkBall.yShrinkBall);
+  ellipse(movingBall.x, movingBall.y, movingBall.xMovingBall, movingBall.yMovingBall);
   pop();
 }
