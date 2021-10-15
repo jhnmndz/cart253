@@ -1,11 +1,11 @@
 /**
-Project 1: Simulation
+Project 1: Simulation of Avoidance Behaviour
 John Mendoza
 
 Creating a simulation where the circle needs to avoid the moving paddles.
 The concept of the game is dodging responsibilities until productivity/urgency builds up.
 
-Might be a Christmas-themed simulation?
+Cycle of stress while showing the reliance on pumps of adrenaline to help productivity
 
 Plan:
 1. Set up the program
@@ -20,6 +20,15 @@ Plan:
 3. Add the idea of states
   Create a state variable and check it in draw
   Connect the states
+
+Concept:
+1. ball will avoid movingBars moving towards
+2. movingBars will randomly move on the x-axis
+3. background will indicate build up of adrenaline
+4. once background filled, bars will be replaced with movingBalls
+5. movingBalls are indicating adrenaline
+6. ball will begin to shake with energy until optimal productivity levels are reached.
+7. You win, you're productive... until you aren't.
 */
 
 "use strict";
