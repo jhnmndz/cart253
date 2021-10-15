@@ -50,8 +50,8 @@ let ball = { //showcasing avoidance behaviour until the very last second
 let bar = { //indicated as intimidating deadline (personal and work)
   x: 0,
   y: 0,
-  xBar: undefined,
-  yBar: 50,
+  xBar: 150,
+  yBar: 75,
   vx: 0,
   vy: 0,
   r: 200,
@@ -120,6 +120,9 @@ function draw() {
 
   display();
   ballMovement();
+  barMovement();
+
+
 
   //Officially stressed (losing state)
   // let d = dist(ball.x,ball.y,bar.x,bar.y);
@@ -164,6 +167,10 @@ function displayBar() {
   noStroke();
   rect(bar.x, bar.y, bar.xBar, bar.yBar);
   pop();
+}
+
+function barMovement(){
+  bar.y = bar.y + bar.vy;
 }
 
 function displayBubble() {
