@@ -35,15 +35,16 @@ Concept:
 
 
 let ball = { //showcasing avoidance behaviour until the very last second
-  x: undefined,
-  y: 450,
-  xBall: 300,
-  yBall: 10,
+  x: 250,
+  y: 900,
+  xBall: 30,
+  yBall: 30,
   vx: 0,
   vy: 0,
-  r: 100,
-  g: 100,
-  b: 100,
+  speed: 3,
+  r: 255,
+  g: 255,
+  b: 255,
 }
 
 let movingBar = { //indicated as intimidating deadline (personal and work)
@@ -70,18 +71,18 @@ let movingBall = { //indicated as productivity bubbles
   b: 200,
 }
 
-let workspace = {
+let workspace = { //minimal space
   x: 500,
   y: 1000,
-  r: 255,
-  g: 255,
-  b: 255
+  r: 0,
+  g: 0,
+  b: 0
 }
 
 
 
 /**
-Maybe uploading Christmas-related imagery???
+Maybe office photos?
 */
 function preload() {
 }
@@ -104,8 +105,21 @@ function draw() {
   push();
   fill(ball.r, ball.g, ball.b);
   noStroke();
-  rect(ball.x, ball.y, ball.xBall, ball.yBall);
+  ellipse(ball.x, ball.y, ball.xBall, ball.yBall);
   pop();
+  //ball movement
+  ball.x = ball.x + ball.vx;
+  ball.y = ball.y + ball.vy;
+  //Controlled movements (keyboard inputs)
+  if (keyIsDown(LEFT_ARROW)){
+    ball.vx = -ball.speed;
+  }
+  else if(keyIsDown(RIGHT_ARROW)) {
+    ball.vx = ball.speed;
+  }
+  else {
+    ball.vx = 0;
+  }
   //display of the movingBar
   push();
   fill(movingBar.r, movingBar.g, movingBar.b);
@@ -118,4 +132,7 @@ function draw() {
   noStroke();
   ellipse(movingBall.x, movingBall.y, movingBall.xMovingBall, movingBall.yMovingBall);
   pop();
+  //Officially stressed (losing state)
+  // let d = dist(ball.x,ball.y,movingBar.x,movingBar.y);
+  // if (d < ball.size + movingBar.size)
 }
